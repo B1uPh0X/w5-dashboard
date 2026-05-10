@@ -103,9 +103,6 @@ def load_player_data():
 team_df = load_team_data()
 player_df = load_player_data()
 
-# ---------------------------------------------------
-# SIDEBAR
-# ---------------------------------------------------
 
 st.sidebar.header("Filters")
 
@@ -121,10 +118,6 @@ min_points = st.sidebar.slider(
     int(team_df["Points"].min())
 )
 
-# ---------------------------------------------------
-# FILTER DATA
-# ---------------------------------------------------
-
 filtered_df = team_df[
     team_df["Points"] >= min_points
 ]
@@ -134,9 +127,6 @@ if selected_team != "All Teams":
         filtered_df["Team"] == selected_team
     ]
 
-# ---------------------------------------------------
-# METRICS
-# ---------------------------------------------------
 
 st.subheader("League Metrics")
 
@@ -166,26 +156,19 @@ with c4:
         round(team_df["Goals Against"].mean(), 2)
     )
 
-# ---------------------------------------------------
-# TABS
-# ---------------------------------------------------
+
 
 tab1, tab2 = st.tabs([
     "📊 Team Overview",
     "⛸️ Player Analytics"
 ])
 
-# ===================================================
-# TAB 1
-# ===================================================
+
 
 with tab1:
 
     st.header("Team Performance Overview")
 
-    # -----------------------------------------------
-    # BAR CHART
-    # -----------------------------------------------
 
     st.subheader("Top Teams by Points")
 
@@ -199,9 +182,7 @@ with tab1:
 
     st.plotly_chart(fig_bar, use_container_width=True)
 
-    # -----------------------------------------------
-    # SCATTER PLOT
-    # -----------------------------------------------
+
 
     st.subheader("Goals For vs Goals Against")
 
@@ -217,9 +198,6 @@ with tab1:
 
     st.plotly_chart(fig_scatter, use_container_width=True)
 
-    # -----------------------------------------------
-    # LINE CHART
-    # -----------------------------------------------
 
     st.subheader("Goal Differential by Team")
 
@@ -235,9 +213,7 @@ with tab1:
 
     st.plotly_chart(fig_line, use_container_width=True)
 
-    # -----------------------------------------------
-    # ANALYSIS
-    # -----------------------------------------------
+
 
     st.markdown("""
     ### Team Insights
@@ -251,17 +227,11 @@ with tab1:
     playoff competition.
     """)
 
-# ===================================================
-# TAB 2
-# ===================================================
 
 with tab2:
 
     st.header("Player Analytics")
 
-    # -----------------------------------------------
-    # PLAYER BAR CHART
-    # -----------------------------------------------
 
     goals_df = player_df[
         player_df["Category"] == "Goals"
@@ -279,9 +249,6 @@ with tab2:
 
     st.plotly_chart(fig_goals, use_container_width=True)
 
-    # -----------------------------------------------
-    # HEATMAP
-    # -----------------------------------------------
 
     st.subheader("Player Leader Heatmap")
 
@@ -301,9 +268,7 @@ with tab2:
 
     st.pyplot(fig)
 
-    # -----------------------------------------------
-    # RADAR CHART
-    # -----------------------------------------------
+
 
     st.subheader("Top Player Comparison")
 
@@ -329,9 +294,7 @@ with tab2:
 
     st.plotly_chart(radar, use_container_width=True)
 
-    # -----------------------------------------------
-    # ANALYSIS
-    # -----------------------------------------------
+
 
     st.markdown("""
     ### Player Insights
@@ -344,9 +307,7 @@ with tab2:
     particularly for teams competing for playoff positioning.
     """)
 
-# ---------------------------------------------------
-# FOOTER
-# ---------------------------------------------------
+
 
 st.markdown("---")
 
